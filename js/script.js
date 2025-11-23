@@ -2,7 +2,7 @@
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
 
-if (navToggle) {
+if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
     });
@@ -35,14 +35,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Navbar background change on scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-    } else {
-        navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-    }
-});
+const navbar = document.querySelector('.navbar');
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+        } else {
+            navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+        }
+    });
+}
 
 // Form submission handler
 const contactForm = document.getElementById('contactForm');
@@ -127,13 +129,15 @@ function validateForm(data) {
 
 // Show form message
 function showMessage(message, type) {
-    formMessage.textContent = message;
-    formMessage.className = `form-message ${type}`;
-    
-    // Auto-hide after 5 seconds
-    setTimeout(() => {
-        formMessage.style.display = 'none';
-    }, 5000);
+    if (formMessage) {
+        formMessage.textContent = message;
+        formMessage.className = `form-message ${type}`;
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+        }, 5000);
+    }
 }
 
 // Animate elements on scroll
@@ -251,16 +255,7 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Add hover effect to service cards
-document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-    });
-});
+// Service card hover effects are handled by CSS :hover pseudo-class
 
 // Prevent form resubmission on page reload
 if (window.history.replaceState) {
