@@ -1,196 +1,269 @@
-# Study Pro Global 🎓
+# Study Pro Global - EdTech University Application Portal
 
-First Decentralized Education Platform for Admission Assistant for Higher Education Abroad
+Welcome to Study Pro Global! A comprehensive EdTech platform for Bangladeshi students seeking to study abroad. Our platform simplifies foreign university applications with AI-powered support, subscription-based services, and cryptocurrency payment integration.
 
-## Overview
+**Value Proposition**: *"Your Partner in Global University Enrollment – Get Accepted and We Succeed Together"*
 
-Study Pro Global is a comprehensive online platform designed to assist students who wish to pursue higher education abroad. We provide end-to-end support from university selection to post-arrival assistance, making the entire process seamless and stress-free.
+## 🚀 Monorepo Structure
 
-## Features
-
-### 🎯 Admission Assistance
-- **Country Selection**: Expert guidance in choosing the best destination for your studies
-- **University Matching**: Access to our extensive database of universities worldwide
-- **Course Advisory**: Personalized recommendations based on your interests and career goals
-- **Application Support**: Complete assistance with application forms and documentation
-
-### 🎤 Interview Preparation
-- **Mock Interviews**: Practice sessions with experienced professionals
-- **Expert Feedback**: Detailed performance analysis and improvement suggestions
-- **Communication Skills**: Training to enhance your articulation and confidence
-- **Question Bank**: Comprehensive database of frequently asked questions
-
-### 💰 Tuition Fee Payment Assistance
-- **Payment Planning**: Guidance on fee structure and payment schedules
-- **Payment Methods**: Information on various secure payment options
-- **Scholarship Information**: Details on available scholarships and financial aid
-- **Financial Advisory**: Expert advice on managing education expenses
-
-### 📋 Visa Documentation
-- **Document Checklist**: Country-specific lists of required documents
-- **Application Review**: Thorough verification of all documentation
-- **Interview Preparation**: Guidance for visa interview success
-- **Follow-up Support**: Assistance throughout the visa process
-
-### ✈️ Post-Arrival Support
-- **Accommodation Help**: Assistance in finding suitable housing
-- **Local Orientation**: Introduction to your new city and culture
-- **Administrative Support**: Help with bank accounts, phone connections, etc.
-- **24/7 Assistance**: Ongoing support during your study abroad journey
-
-### 💻 100% Online Platform
-- **Virtual Consultations**: Connect with advisors from anywhere
-- **Document Upload**: Secure online document submission
-- **Progress Tracking**: Monitor your application status in real-time
-- **24/7 Access**: Access services anytime, anywhere
-
-## Technology Stack
-
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Styling**: Custom CSS with responsive design
-- **Icons**: Font Awesome 6.4.0
-- **No Backend Required**: Fully functional static website
-
-## Project Structure
+This is a monorepo containing all components of the Study Pro Global platform:
 
 ```
-Study-Pro-Global-/
-├── index.html          # Main HTML file
-├── css/
-│   └── style.css      # Styles and responsive design
-├── js/
-│   └── script.js      # Interactive functionality
-├── images/
-│   └── README.md      # Image specifications
-├── LICENSE            # MIT License
-└── README.md          # This file
+Study-Pro-Global/
+├── Frontend/           # Web application (HTML/CSS/JS)
+├── Backend/            # Server application (Node.js/Python/PHP)
+├── API/                # API documentation and specifications
+├── Mobile/             # Mobile apps (React Native/Flutter)
+├── README.md           # This file
+└── LICENSE            # MIT License
 ```
 
-## Getting Started
+### 📁 Folder Details
 
-### Prerequisites
+#### [Frontend/](./Frontend/)
+The responsive web application built with HTML5, CSS3, and vanilla JavaScript.
+- **Status**: ✅ Complete and Deployed
+- **Features**: Registration, Login, Pricing Plans, University Search, Scholarships
+- **Tech Stack**: HTML5, CSS3, Vanilla JavaScript, Font Awesome 6.4
 
-No special software required! Just a modern web browser.
+#### [Backend/](./Backend/)
+Server-side application handling business logic, database operations, and integrations.
+- **Status**: 🔧 Ready for Implementation
+- **Recommended Stack**: Node.js + Express or Python + Django
+- **Features**: Authentication, User Management, Payment Processing, AI Chat Support
 
-### Installation
+#### [API/](./API/)
+Complete API documentation with endpoint specifications and examples.
+- **Status**: ✅ Documented
+- **Base URL**: `/api/v1`
+- **Endpoints**: Auth, Users, Universities, Applications, Payments, Scholarships, Courses
 
-1. Clone the repository:
+#### [Mobile/](./Mobile/)
+Native mobile applications for Android and iOS.
+- **Status**: 🔧 Ready for Implementation
+- **Recommended Stack**: React Native or Flutter
+- **Features**: All web features + Push Notifications + Biometric Auth + Offline Support
+
+## 🎯 Key Features
+
+### Free Tier
+- ✅ Free Registration & Profile Creation
+- ✅ University Search (Limited Results)
+- ✅ 3 Free University Applications
+- ✅ Basic AI Chat Support (24/7)
+- ✅ Scholarship Opportunity Viewing
+- ✅ Free Newsletter Sign-up
+
+### Paid Subscription Tiers (2-Year Validity)
+
+#### 1. Country Focus Pack (Asia) - $25
+- Asian Universities Access
+- 5 University Applications
+- Full Search Access
+- AI Support 24/7
+- Newsletter & Updates
+- Scholarship Opportunities
+
+#### 2. Country Focus Pack (Europe) - $50
+- European Universities (excluding UK)
+- 5 University Applications
+- Full Search Access
+- AI Support 24/7
+- Newsletter & Updates
+- Scholarship Opportunities
+
+#### 3. Global Application Pack - $100 ⭐ Most Popular
+- **Worldwide Universities** (UK, USA, Canada, Australia, Europe, Asia)
+- **Unlimited Applications**
+- Premium Support (AI + Human)
+- **UK Bonus Package** (Dedicated guidance, exclusive info, enhanced interview prep)
+- Auto Scholarship Matching
+- Interview Support
+- Language Test Discounts
+- University Ambassador Access
+
+## 💳 Payment Methods
+
+- **🔥 $myxn Token (Priority)** - Cryptocurrency payment from [myxenpay-dapp](https://github.com/bikkhoto/myxenpay-dapp)
+- 💰 bKash Mobile Payment
+- 📱 Nagad Mobile Payment
+- 💳 SSLCOMMERZ (Credit/Debit Cards)
+- 🌐 General Crypto Payments
+
+## 🛠️ Tech Stack
+
+### Frontend
+- HTML5, CSS3, JavaScript
+- Responsive Design (Mobile-first)
+- Font Awesome Icons
+- No framework dependencies
+
+### Backend (Recommended)
+- **Option 1**: Node.js + Express + PostgreSQL
+- **Option 2**: Python + Django + PostgreSQL
+- JWT Authentication
+- Redis for caching
+- AWS S3 for file storage
+
+### Mobile (Recommended)
+- **Option 1**: React Native
+- **Option 2**: Flutter
+- Firebase Cloud Messaging
+- Biometric Authentication
+
+## 🚦 Getting Started
+
+### Frontend (Web App)
 ```bash
-git clone https://github.com/MyXen-inc/Study-Pro-Global-.git
+cd Frontend
+# Open index.html in browser or use a local server
+python3 -m http.server 8080
 ```
+Then navigate to `http://localhost:8080`
 
-2. Navigate to the project directory:
+### Backend (To Be Implemented)
 ```bash
-cd Study-Pro-Global-
+cd Backend
+# Follow Backend/README.md for setup instructions
 ```
 
-3. Open `index.html` in your web browser:
+### Mobile (To Be Implemented)
 ```bash
-# On macOS
-open index.html
-
-# On Linux
-xdg-open index.html
-
-# On Windows
-start index.html
+cd Mobile
+# Follow Mobile/README.md for setup instructions
 ```
 
-### Deployment
+## 📚 Documentation
 
-This is a static website and can be deployed to any web hosting service:
+- **Frontend**: See [Frontend/README.md](./Frontend/README.md)
+- **Backend**: See [Backend/README.md](./Backend/README.md)
+- **API**: See [API/README.md](./API/README.md)
+- **Mobile**: See [Mobile/README.md](./Mobile/README.md)
 
-- **GitHub Pages**: Push to GitHub and enable Pages in repository settings
-- **Netlify**: Drag and drop the folder or connect your repository
-- **Vercel**: Import the repository for automatic deployment
-- **Traditional Hosting**: Upload all files to your web server
+## �� Environment Variables
 
-## Usage
+Each component requires specific environment variables. Create `.env` files in respective folders:
 
-### For Students
-
-1. Visit the website
-2. Explore available services
-3. Fill out the contact form with your requirements
-4. Our team will get back to you within 24 hours
-
-### For Administrators
-
-To customize the website:
-
-1. Edit `index.html` for content changes
-2. Modify `css/style.css` for styling adjustments
-3. Update `js/script.js` for functionality changes
-4. Add images to the `images/` directory
-
-## Customization
-
-### Changing Colors
-
-Edit the CSS variables in `css/style.css`:
-
-```css
-:root {
-    --primary-color: #2563eb;    /* Main blue color */
-    --secondary-color: #10b981;  /* Accent green color */
-    --dark-color: #1e293b;       /* Dark text */
-    --light-color: #f8fafc;      /* Light background */
-}
+### Backend
+```env
+DATABASE_URL=postgresql://...
+JWT_SECRET=...
+MYXN_TOKEN_API_KEY=...
+BKASH_APP_KEY=...
+SMTP_HOST=...
 ```
 
-### Adding More Services
+### Mobile
+```env
+API_BASE_URL=https://api.studyproglobal.com
+MYXN_TOKEN_CONTRACT_ADDRESS=...
+```
 
-Add new service cards in the services grid section of `index.html` following the existing structure.
+## 🎨 Branding
 
-### Modifying Contact Information
+### Logo
+Upload your logo file to `Frontend/images/` directory.
+Supported formats: PNG, SVG, JPG
 
-Update contact details in the contact section and footer of `index.html`.
+### Color Scheme
+- Primary: #2563eb (Blue)
+- Secondary: #10b981 (Green)
+- Dark: #1e293b
+- Light: #f8fafc
 
-## Features Implemented
+## 📱 Deployment
 
-- ✅ Responsive design for mobile, tablet, and desktop
-- ✅ Smooth scrolling navigation
-- ✅ Interactive forms with validation
-- ✅ Animated elements on scroll
-- ✅ Mobile-friendly navigation menu
-- ✅ Professional UI/UX design
-- ✅ Comprehensive service descriptions
-- ✅ Contact form with client-side validation
+### Frontend
+- **GitHub Pages**: Automatic deployment
+- **Netlify**: Connect GitHub repo
+- **Vercel**: One-click deployment
+- **AWS S3 + CloudFront**: Production setup
 
-## Browser Support
+### Backend
+- **AWS**: EC2, ECS, Lambda
+- **DigitalOcean**: Droplets
+- **Heroku**: Easy deployment
+- **Railway**: Modern hosting
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Opera (latest)
+### Mobile
+- **iOS**: App Store via TestFlight
+- **Android**: Google Play Console
+- **Beta**: Firebase App Distribution
 
-## Contributing
+## 🧪 Testing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Frontend
+```bash
+# Manual testing in browser
+# Responsive design testing with DevTools
+```
 
+### Backend
+```bash
+npm test  # or pytest for Python
+```
+
+### Mobile
+```bash
+npm test  # React Native
+flutter test  # Flutter
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Please:
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
+## 📞 Contact & Support
 
-Study Pro Global
-- Email: info@studyproglobal.com
-- Phone: +1 (555) 123-4567
-- Website: [Study Pro Global](https://github.com/MyXen-inc/Study-Pro-Global-)
+- **Website**: https://studyproglobal.com
+- **Email**: info@studyproglobal.com
+- **API Support**: api-support@studyproglobal.com
+- **Mobile Support**: mobile-dev@studyproglobal.com
 
-## Acknowledgments
+## 🗺️ Roadmap
 
-- Font Awesome for icons
-- All contributors who help make international education accessible
+### Phase 1: Frontend ✅ COMPLETE
+- [x] Responsive web design
+- [x] Pricing pages
+- [x] Registration/Login UI
+- [x] University search interface
+
+### Phase 2: Backend 🔧 IN PROGRESS
+- [ ] User authentication system
+- [ ] Database setup
+- [ ] Payment gateway integration
+- [ ] AI chat support
+- [ ] University database
+
+### Phase 3: Mobile 📅 PLANNED
+- [ ] React Native/Flutter setup
+- [ ] Core features implementation
+- [ ] Push notifications
+- [ ] App store submission
+
+### Phase 4: Integrations 📅 PLANNED
+- [ ] $myxn token payment
+- [ ] bKash/Nagad integration
+- [ ] Email service (Mailchimp)
+- [ ] AI chat service
+- [ ] Analytics
+
+## 🌟 Key Differentiators
+
+- 🤖 **AI-Powered Support**: 24/7 instant assistance
+- 🎓 **Commission-Driven Model**: Success aligned with student enrollment
+- 🇧🇩 **Bangladesh Focus**: Specifically designed for Bangladeshi students
+- 🌐 **100% Online Platform**: Accessible from anywhere
+- 🔒 **Secure Payments**: Multiple payment options including crypto
 
 ---
 
-**Made with ❤️ for students aspiring to study abroad**
+**Built with ❤️ for Students Aspiring to Study Abroad**
