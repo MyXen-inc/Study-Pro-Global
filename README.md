@@ -84,11 +84,10 @@ Native mobile applications for Android and iOS.
 
 ## 💳 Payment Methods
 
-- **🔥 $myxn Token (Priority)** - Cryptocurrency payment from [myxenpay-dapp](https://github.com/bikkhoto/myxenpay-dapp)
-- 💰 bKash Mobile Payment
-- 📱 Nagad Mobile Payment
-- 💳 SSLCOMMERZ (Credit/Debit Cards)
-- 🌐 General Crypto Payments
+- **🔥 $myxn Token** - Cryptocurrency payment from [myxenpay-dapp](https://github.com/bikkhoto/myxenpay-dapp)
+- 💳 **Visa** - Credit/Debit Cards
+- 💳 **Mastercard** - Credit/Debit Cards
+- 💳 **American Express** - Credit/Debit Cards
 
 ## 🛠️ Tech Stack
 
@@ -250,8 +249,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] App store submission
 
 ### Phase 4: Integrations 📅 PLANNED
-- [ ] $myxn token payment
-- [ ] bKash/Nagad integration
+- [ ] $myxn token payment (crypto)
+- [ ] Credit card integration (Visa/Mastercard/Amex)
 - [ ] Email service (Mailchimp)
 - [ ] AI chat service
 - [ ] Analytics

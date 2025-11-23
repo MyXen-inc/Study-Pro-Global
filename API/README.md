@@ -293,7 +293,7 @@ Content-Type: application/json
 
 {
   "planId": "global",
-  "paymentMethod": "myxn_token"
+  "paymentMethod": "myxn_token" // or "credit_card"
 }
 
 Response: 201 Created
@@ -317,8 +317,15 @@ Content-Type: application/json
 
 {
   "subscriptionId": "uuid",
-  "paymentMethod": "myxn_token",
-  "amount": 100
+  "paymentMethod": "myxn_token", // or "credit_card"
+  "amount": 100,
+  "cardDetails": { // Required only for credit_card
+    "cardNumber": "4111111111111111",
+    "expiryMonth": "12",
+    "expiryYear": "2025",
+    "cvv": "123",
+    "cardholderName": "John Doe"
+  }
 }
 
 Response: 201 Created

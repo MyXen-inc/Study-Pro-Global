@@ -80,9 +80,8 @@ Mobile/
 
 ### 6. Payments
 - Subscription purchase
-- **$myxn Token payment integration**
-- bKash mobile payment
-- Nagad integration
+- **$myxn Token payment integration** (Cryptocurrency)
+- Credit card payments (Visa, Mastercard, American Express)
 - Payment history
 - Invoice downloads
 

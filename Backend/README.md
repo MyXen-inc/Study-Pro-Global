@@ -72,10 +72,9 @@ Backend/
 - 2-year validity tracking
 
 ### 6. Payment Processing
-- **$myxn Token integration** (Priority) from [myxenpay-dapp](https://github.com/bikkhoto/myxenpay-dapp)
-- bKash payment gateway
-- Nagad payment gateway
-- SSLCOMMERZ integration
+- **$myxn Token integration** (Cryptocurrency) from [myxenpay-dapp](https://github.com/bikkhoto/myxenpay-dapp)
+- Credit card processing (Visa, Mastercard, American Express)
+- Payment gateway integration (Stripe or similar)
 - Payment webhook handling
 - Transaction history
 
@@ -132,11 +131,9 @@ JWT_EXPIRATION=7d
 # Payment Gateways
 MYXN_TOKEN_API_KEY=
 MYXN_TOKEN_WEBHOOK_SECRET=
-BKASH_APP_KEY=
-BKASH_APP_SECRET=
-NAGAD_MERCHANT_ID=
-SSLCOMMERZ_STORE_ID=
-SSLCOMMERZ_STORE_PASSWORD=
+STRIPE_SECRET_KEY=
+STRIPE_PUBLISHABLE_KEY=
+STRIPE_WEBHOOK_SECRET=
 
 # Email
 SMTP_HOST=smtp.gmail.com
