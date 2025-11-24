@@ -14,8 +14,8 @@ This guide explains how to deploy Study Pro Global EdTech platform using cPanel'
 This repository includes a `.cpanel.yml` file that automates deployment when you push to GitHub. cPanel will automatically:
 
 1. Pull the latest code from GitHub
-2. Deploy Frontend to `public_html/`
-3. Deploy Backend to `studypro-backend/` (outside public_html for security)
+2. Deploy Frontend to `studyproglobal.com.bd/`
+3. Deploy Backend to `studypro-backend/` (outside public directory for security)
 4. Set proper file permissions
 5. Create necessary directories
 
@@ -28,7 +28,7 @@ This repository includes a `.cpanel.yml` file that automates deployment when you
 3. Click **Create** to add a new repository
 4. Fill in the details:
    - **Clone URL**: `https://github.com/MyXen-inc/Study-Pro-Global-.git`
-   - **Repository Path**: `/home/myxenpay/studypro-global`
+   - **Repository Path**: `/home/myxenpay/repository`
    - **Repository Name**: `Study-Pro-Global`
    - **Branch**: `copilot/create-student-study-abroad-website` (or your main branch)
 5. Click **Create**
@@ -37,7 +37,7 @@ This repository includes a `.cpanel.yml` file that automates deployment when you
 
 The `.cpanel.yml` file is already configured and will automatically:
 
-- Deploy Frontend files to `/home/myxenpay/public_html/`
+- Deploy Frontend files to `/home/myxenpay/studyproglobal.com.bd/`
 - Deploy Backend files to `/home/myxenpay/studypro-backend/`
 - Set appropriate permissions
 - Create necessary directories
@@ -120,7 +120,7 @@ npm install --production
 ### Step 7: Configure Domain
 
 1. In cPanel, go to **Domains**
-2. Ensure `www.studyproglobal.com.bd` points to `/home/myxenpay/public_html/`
+2. Ensure `www.studyproglobal.com.bd` points to `/home/myxenpay/studyproglobal.com.bd/`
 3. Enable HTTPS/SSL:
    - Go to **SSL/TLS Status**
    - Run AutoSSL for your domain
@@ -128,7 +128,7 @@ npm install --production
 
 ### Step 8: Set Up .htaccess for Frontend Routing
 
-Create `/home/myxenpay/public_html/.htaccess`:
+Create `/home/myxenpay/studyproglobal.com.bd/.htaccess`:
 
 ```apache
 # Enable rewrite engine
@@ -173,11 +173,11 @@ RewriteRule ^(.*)$ /index.html [L]
 
 ### Step 9: Upload Logo
 
-1. Upload `logo.jpg` to `/home/myxenpay/public_html/images/`
+1. Upload `logo.jpg` to `/home/myxenpay/studyproglobal.com.bd/images/`
 2. Set permissions:
 
 ```bash
-chmod 644 /home/myxenpay/public_html/images/logo.jpg
+chmod 644 /home/myxenpay/studyproglobal.com.bd/images/logo.jpg
 ```
 
 ## Automatic Deployment Workflow
@@ -199,7 +199,7 @@ Once configured, every time you push to GitHub:
    - Detects the push
    - Pulls the latest code
    - Runs `.cpanel.yml` deployment tasks
-   - Deploys Frontend to public_html
+   - Deploys Frontend to studyproglobal.com.bd
    - Deploys Backend to studypro-backend
    - Updates permissions
 
@@ -252,19 +252,19 @@ If automatic deployment doesn't work, you can manually pull updates:
 
 ```
 /home/myxenpay/
-├── public_html/                    # Frontend (accessible via web)
+├── studyproglobal.com.bd/          # Frontend (accessible via web)
 │   ├── index.html
 │   ├── css/
 │   ├── js/
 │   ├── images/
 │   │   └── logo.jpg               # Upload your logo here
 │   └── .htaccess
-├── studypro-backend/               # Backend (secure, outside public_html)
+├── studypro-backend/               # Backend (secure, outside public directory)
 │   ├── .env.production            # Your configuration (create this)
 │   ├── server.js
 │   ├── package.json
 │   └── node_modules/
-├── studypro-global/                # Git repository clone
+├── repository/                     # Git repository clone
 └── logs/                          # Application logs
 ```
 

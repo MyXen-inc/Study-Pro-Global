@@ -1,8 +1,8 @@
 ---
 deployment:
   tasks:
-    # Deploy Frontend to public_html
-    - export DEPLOYPATH=/home/myxenpay/public_html/
+    # Deploy Frontend to studyproglobal.com.bd
+    - export DEPLOYPATH=/home/myxenpay/studyproglobal.com.bd/
     - /bin/cp -R Frontend/* $DEPLOYPATH
     
     # Create necessary directories if they don't exist
@@ -17,7 +17,7 @@ deployment:
     - chmod 644 $DEPLOYPATH/js/*.js
     - chmod 755 $DEPLOYPATH/images
     
-    # Deploy Backend to a separate directory (outside public_html for security)
+    # Deploy Backend to a separate directory (outside public directory for security)
     - export BACKENDPATH=/home/myxenpay/studypro-backend/
     - mkdir -p $BACKENDPATH
     - /bin/cp -R Backend/* $BACKENDPATH
