@@ -320,6 +320,11 @@ mysql -h server10.cloudswebserver.com \
    - Configure error alerts
    - Enable performance monitoring
 
+6. **Future Integrations** (Optional Enhancements)
+   - **MSM Unify**: Consider integrating with [MSM Unify services](https://www.msmunify.com/service/) for enhanced university services and [institutional features](https://www.msmunify.com/for-institutions/)
+   - Add MSM Unify API configuration in `.env` (MSMUNIFY_API_KEY, MSMUNIFY_ENABLED)
+   - Explore their API for additional student services and university connections
+
 ## Support
 
 For deployment issues:
