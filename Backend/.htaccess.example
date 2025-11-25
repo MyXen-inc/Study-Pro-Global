@@ -1,0 +1,10 @@
+# Proxy API requests to Node.js backend
+# Place this in /home/myxenpay/studyproglobal.com.bd/.htaccess
+
+RewriteEngine On
+
+# Proxy /api requests to Node.js backend
+RewriteRule ^api/(.*)$ http://localhost:3000/api/$1 [P,L]
+
+# Or if using subdomain api.studyproglobal.com.bd
+# Configure in cPanel to point to port 3000
