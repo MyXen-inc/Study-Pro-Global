@@ -89,8 +89,16 @@ function escapeHtml(input) {
 
 /**
  * Sanitize user input for storage
- * For markdown content, we allow the raw content but escape on output
- * For other fields, we escape HTML entities
+ * 
+ * Security Model:
+ * - For non-markdown fields (title, meta description, etc.): Full HTML escaping
+ * - For markdown content: Store as-is since markdown needs special characters
+ *   The frontend uses DOMPurify to sanitize HTML after markdown rendering
+ *   This is the standard approach used by major blog platforms
+ * 
+ * IMPORTANT: All markdown content MUST be sanitized by DOMPurify on the frontend
+ * before rendering to the DOM. See Frontend/js/blog.js renderMarkdown() function.
+ * 
  * @param {string} input - Input to sanitize
  * @param {boolean} allowMarkdown - Whether to preserve markdown (for content field)
  * @returns {string} - Sanitized input
@@ -99,15 +107,13 @@ function sanitizeInput(input, allowMarkdown = false) {
   if (typeof input !== 'string') return '';
   
   if (allowMarkdown) {
-    // For markdown content, we store raw but the frontend will
-    // use DOMPurify to sanitize rendered HTML
-    // Only remove the most dangerous inline scripts
-    return input
-      .replace(/<script[\s\S]*?<\/script\s*>/gi, '')
-      .replace(/<script[\s\S]*?>/gi, '');
+    // For markdown content, store as-is
+    // Security: Frontend MUST use DOMPurify before rendering
+    // This allows markdown syntax like # headers, **bold**, etc. to work
+    return input;
   }
   
-  // For non-markdown fields, escape all HTML
+  // For non-markdown fields, escape all HTML entities
   return escapeHtml(input);
 }
 
