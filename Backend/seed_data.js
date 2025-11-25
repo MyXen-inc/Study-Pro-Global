@@ -93,7 +93,10 @@ const seedData = async () => {
 
     // Sample Admin User
     console.log('👤 Creating admin user...');
-    const adminPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'AdminPass123!', 10);
+    if (!process.env.ADMIN_PASSWORD) {
+      console.warn('  ⚠️ ADMIN_PASSWORD not set in environment. Using default password (CHANGE IN PRODUCTION!)');
+    }
+    const adminPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'ChangeThisPassword123!', 10);
     const adminId = generateUUID();
     await connection.query(
       `INSERT IGNORE INTO users (id, full_name, email, password, role, is_active, subscription_type) VALUES (?, ?, ?, ?, 'admin', true, 'global')`,

@@ -304,11 +304,11 @@ if (registerForm) {
             const result = await Auth.register(data);
             if (result.success) {
                 registerForm.reset();
-                // Redirect to dashboard or home
+                // Redirect to home after brief delay for notification
                 setTimeout(() => {
                     window.location.hash = '#home';
                     window.scrollTo(0, 0);
-                }, 1000);
+                }, 500);
             }
         } finally {
             submitButton.textContent = originalText;

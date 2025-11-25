@@ -65,8 +65,8 @@ const writeToFile = (formattedMessage) => {
 
     // Append to log file
     fs.appendFileSync(logFilePath, formattedMessage + '\n');
-  } catch (error) {
-    console.error('Failed to write to log file:', error.message);
+  } catch (err) {
+    // Fail silently to prevent infinite loops in error logging
   }
 };
 

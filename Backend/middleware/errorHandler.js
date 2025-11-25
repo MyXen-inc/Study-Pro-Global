@@ -116,7 +116,8 @@ const globalErrorHandler = (err, req, res, next) => {
  * Request ID middleware
  */
 const addRequestId = (req, res, next) => {
-  req.requestId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  const crypto = require('crypto');
+  req.requestId = crypto.randomUUID();
   res.setHeader('X-Request-ID', req.requestId);
   next();
 };

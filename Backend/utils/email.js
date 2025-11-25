@@ -13,6 +13,9 @@ const createTransporter = () => {
   });
 };
 
+// Get base URL from environment
+const getBaseUrl = () => process.env.APP_URL || 'https://www.studyproglobal.com.bd';
+
 // Email templates
 const emailTemplates = {
   welcome: (userName) => ({
@@ -30,7 +33,7 @@ const emailTemplates = {
           <li>View scholarship opportunities</li>
         </ul>
         <p>Get started by exploring our university database and finding the perfect match for your academic goals.</p>
-        <a href="https://www.studyproglobal.com.bd" style="display: inline-block; background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">Explore Universities</a>
+        <a href="${getBaseUrl()}" style="display: inline-block; background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">Explore Universities</a>
         <p style="margin-top: 24px;">Best regards,<br>The Study Pro Global Team</p>
       </div>
     `
@@ -64,7 +67,7 @@ const emailTemplates = {
           <p><strong>Status:</strong> Pending Review</p>
         </div>
         <p>We will notify you when there are updates to your application status.</p>
-        <a href="https://www.studyproglobal.com.bd/dashboard" style="display: inline-block; background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">View Application</a>
+        <a href="${getBaseUrl()}/dashboard" style="display: inline-block; background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">View Application</a>
         <p style="margin-top: 24px;">Best regards,<br>The Study Pro Global Team</p>
       </div>
     `
@@ -82,7 +85,7 @@ const emailTemplates = {
           <p><strong>Valid Until:</strong> ${expiresAt}</p>
         </div>
         <p>You now have access to all premium features. Start exploring universities worldwide!</p>
-        <a href="https://www.studyproglobal.com.bd/universities" style="display: inline-block; background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">Explore Universities</a>
+        <a href="${getBaseUrl()}/universities" style="display: inline-block; background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">Explore Universities</a>
         <p style="margin-top: 24px;">Best regards,<br>The Study Pro Global Team</p>
       </div>
     `
@@ -100,7 +103,7 @@ const emailTemplates = {
           <p><strong>Scheduled:</strong> ${scheduledAt}</p>
         </div>
         <p>You will receive a meeting link before the scheduled time.</p>
-        <a href="https://www.studyproglobal.com.bd/dashboard" style="display: inline-block; background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">View Consultations</a>
+        <a href="${getBaseUrl()}/dashboard" style="display: inline-block; background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">View Consultations</a>
         <p style="margin-top: 24px;">Best regards,<br>The Study Pro Global Team</p>
       </div>
     `

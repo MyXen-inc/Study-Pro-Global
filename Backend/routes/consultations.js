@@ -30,11 +30,13 @@ router.post('/book', verifyToken, [
     const scheduledDate = new Date(scheduledAt);
     const endTime = new Date(scheduledDate.getTime() + durationMinutes * 60000);
 
+    // Check for overlapping consultations using proper interval overlap logic
     const [existingConsultations] = await pool.query(
       `SELECT id FROM consultations 
-       WHERE scheduled_at BETWEEN ? AND ?
-       AND status IN ('scheduled', 'confirmed')`,
-      [scheduledDate, endTime]
+       WHERE status IN ('scheduled', 'confirmed')
+       AND scheduled_at < ?
+       AND DATE_ADD(scheduled_at, INTERVAL duration_minutes MINUTE) > ?`,
+      [endTime, scheduledDate]
     );
 
     if (existingConsultations.length > 0) {

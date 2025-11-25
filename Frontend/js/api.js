@@ -56,7 +56,7 @@ const API = {
         // Handle token expiration
         if (response.status === 401) {
           Auth.logout();
-          window.location.href = '#login';
+          window.location.hash = '#login';
         }
         throw new APIError(data.error?.message || 'Request failed', data.error?.code, response.status);
       }

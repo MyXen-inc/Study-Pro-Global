@@ -112,10 +112,14 @@ router.post('/:id/enroll', verifyToken, async (req, res) => {
       return errorResponse(res, 409, 'ALREADY_ENROLLED', 'You are already enrolled in this course');
     }
 
-    // For paid courses, check if payment is made
+    // For paid courses, check if payment is made or if in demo mode
     if (course.type === 'paid' && course.price > 0) {
-      // In production, verify payment before enrollment
-      // For now, allow enrollment for demo purposes
+      // TODO: Implement payment verification
+      // Check if user has a valid payment for this course
+      // For now, only allow paid enrollments if demo mode is enabled
+      if (process.env.NODE_ENV === 'production' && process.env.ENABLE_DEMO_MODE !== 'true') {
+        return errorResponse(res, 402, 'PAYMENT_REQUIRED', 'Please complete payment before enrolling in this course');
+      }
     }
 
     // Create enrollment record
