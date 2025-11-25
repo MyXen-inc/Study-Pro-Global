@@ -286,8 +286,8 @@ pm2 logs studyproglobal-api
 # Check port availability
 netstat -tlnp | grep 3000
 
-# Check environment file (verify credentials are set)
-cat .env | grep -v PASSWORD
+# Check environment file exists (do not display contents)
+test -f .env && echo ".env file exists" || echo ".env file missing"
 ```
 
 ### Database connection error
