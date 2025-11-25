@@ -407,17 +407,26 @@ nano /home/backup-db.sh
 
 ```bash
 #!/bin/bash
-# Load environment variables from your backend installation directory
-source /path/to/studypro-backend/.env
+# Secure backup script using MySQL defaults-extra-file
+# Create ~/.my.cnf with your database credentials (set chmod 600)
+# This avoids exposing credentials in process listings
 
 DATE=$(date +%Y%m%d_%H%M%S)
-mysqldump -h $DB_HOST \
-  -u $DB_USER \
-  -p$DB_PASSWORD \
-  $DB_NAME > /backups/db_$DATE.sql
+BACKUP_DIR="/backups"
+MY_CNF="$HOME/.my.cnf"
+
+# Check if MySQL config file exists
+if [ ! -f "$MY_CNF" ]; then
+  echo "Error: MySQL config file $MY_CNF not found"
+  echo "Create it with: [client] user=xxx password=xxx host=xxx"
+  exit 1
+fi
+
+# Create backup using secure config file
+mysqldump --defaults-extra-file="$MY_CNF" $DB_NAME > "$BACKUP_DIR/db_$DATE.sql"
   
 # Keep only last 7 days
-find /backups/ -name "db_*.sql" -mtime +7 -delete
+find "$BACKUP_DIR" -name "db_*.sql" -mtime +7 -delete
 ```
 
 ```bash

@@ -1,5 +1,12 @@
 const mysql = require('mysql2/promise');
 
+// Validate required environment variables
+if (!process.env.DB_PASSWORD) {
+  console.error('❌ ERROR: DB_PASSWORD environment variable is required but not set.');
+  console.error('Please set DB_PASSWORD in your .env file before starting the application.');
+  process.exit(1);
+}
+
 // Create database connection pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',

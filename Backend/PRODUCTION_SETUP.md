@@ -256,11 +256,16 @@ pm2 logs studyproglobal-api --lines 100
 
 ### Database Backup
 ```bash
-# Use environment variables from your .env file
-mysqldump -h $DB_HOST \
-  -u $DB_USER \
-  -p$DB_PASSWORD \
-  $DB_NAME > backup_$(date +%Y%m%d).sql
+# Recommended: Use --defaults-extra-file to avoid exposing credentials
+# Create a secure MySQL config file ~/.my.cnf with your credentials:
+# [client]
+# user=your_db_user
+# password=your_db_password
+# host=your_db_host
+# 
+# Set permissions: chmod 600 ~/.my.cnf
+# Then run:
+mysqldump --defaults-extra-file=~/.my.cnf $DB_NAME > backup_$(date +%Y%m%d).sql
 ```
 
 ## Security Checklist
