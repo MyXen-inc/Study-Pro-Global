@@ -161,7 +161,13 @@ const Chatbot = {
 
         const msgDiv = document.createElement('div');
         msgDiv.className = `chatbot-message ${sender}`;
-        msgDiv.innerHTML = text;
+        // Use textContent for all user or DOM-derived messages to prevent XSS.
+        if (sender === 'bot') {
+            // If bot messages require formatting and are trusted, use DOMPurify here.
+            msgDiv.textContent = text;
+        } else {
+            msgDiv.textContent = text;
+        }
 
         container.appendChild(msgDiv);
 
