@@ -173,17 +173,18 @@ Backend/
 ### Option 1: Automatic (Recommended)
 ```bash
 # Just push to GitHub
-git push origin copilot/deploy-backend-api
+git push origin main
 
-# cPanel automatically deploys to:
-# /home/myxenpay/studypro-backend/
+# cPanel automatically deploys to your configured directory
 ```
 
 ### Option 2: Manual
 ```bash
 # On production server
-cd /home/myxenpay/studypro-backend/
+cd /path/to/studypro-backend/
 cp .env.example .env
+# Edit .env with your actual credentials
+nano .env
 npm install --production
 pm2 start server.js --name studyproglobal-api
 pm2 save

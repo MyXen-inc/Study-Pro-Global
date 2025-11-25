@@ -26,7 +26,7 @@ Before deploying, ensure you have:
 ### 1.1 Connect to Server
 
 ```bash
-ssh username@server10.cloudswebserver.com
+ssh username@your-server-hostname
 ```
 
 ### 1.2 Install Node.js (if not installed)
@@ -399,8 +399,8 @@ nano /home/backup-db.sh
 
 ```bash
 #!/bin/bash
-# Load environment variables
-source /home/myxenpay/studypro-backend/.env
+# Load environment variables from your backend installation directory
+source /path/to/studypro-backend/.env
 
 DATE=$(date +%Y%m%d_%H%M%S)
 mysqldump -h $DB_HOST \
@@ -460,11 +460,11 @@ cat Backend/.env
 
 ### Database connection issues
 ```bash
-# Test database connection
-mysql -h server10.cloudswebserver.com -u myxenpay_studyproglobal -p
+# Test database connection (use your credentials from .env)
+mysql -h $DB_HOST -u $DB_USER -p
 
 # Check if database user has correct permissions
-SHOW GRANTS FOR 'myxenpay_studyproglobal'@'%';
+SHOW GRANTS FOR 'your_database_user'@'%';
 ```
 
 ### SSL certificate issues

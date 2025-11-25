@@ -54,11 +54,11 @@ Since `.cpanel.yml` is configured, deployment is automatic:
 
 ```bash
 # Just push to GitHub
-git push origin copilot/deploy-backend-api
+git push origin main
 
 # cPanel will automatically:
 # 1. Pull latest code
-# 2. Deploy Backend to /home/myxenpay/studypro-backend/
+# 2. Deploy Backend to your backend directory
 # 3. Set permissions
 ```
 
@@ -67,10 +67,13 @@ git push origin copilot/deploy-backend-api
 SSH into your server and run:
 
 ```bash
-cd /home/myxenpay/studypro-backend/
+cd /path/to/studypro-backend/
 
 # Copy environment file
 cp .env.example .env
+
+# Edit .env with your actual credentials
+nano .env
 
 # Install dependencies
 npm install --production
@@ -83,16 +86,24 @@ pm2 startup
 
 ### 4. Environment Configuration
 
-The `.env.example` file is pre-configured with:
-- ✅ Database credentials (from SERVER_CREDENTIALS.md)
-- ✅ Secure JWT and Session secrets (auto-generated)
-- ✅ Production URLs
+The `.env.example` file is a template with placeholder values.
 
-**Additional Configuration Needed:**
+**Configuration Required:**
 
-Edit `/home/myxenpay/studypro-backend/.env` and add:
+Edit your `.env` file and configure:
 
 ```env
+# Database credentials (required)
+DB_HOST=your_database_host
+DB_USER=your_database_user
+DB_PASSWORD=your_secure_password
+DB_NAME=your_database_name
+
+# Generate secure secrets:
+# node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+JWT_SECRET=your_generated_jwt_secret
+SESSION_SECRET=your_generated_session_secret
+
 # Email Configuration
 SMTP_USER=noreply@studyproglobal.com.bd
 SMTP_PASSWORD=your_email_app_password
@@ -119,7 +130,7 @@ AWS_S3_BUCKET=studyproglobal-uploads
 ### 5. Database Setup
 
 The database tables will be created automatically on first run. The backend will:
-1. Connect to MySQL database: `myxenpay_studyproglobal`
+1. Connect to MySQL database using credentials from `.env`
 2. Create all required tables if they don't exist
 3. Set up proper indexes and foreign keys
 
@@ -275,8 +286,8 @@ pm2 logs studyproglobal-api
 # Check port availability
 netstat -tlnp | grep 3000
 
-# Check environment file
-cat /home/myxenpay/studypro-backend/.env
+# Check environment file (verify credentials are set)
+cat .env | grep -v PASSWORD
 ```
 
 ### Database connection error

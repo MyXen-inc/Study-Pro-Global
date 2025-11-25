@@ -115,14 +115,14 @@ chmod 600 .env.production
 2. Or via SSH:
 
 ```bash
-cd /home/myxenpay/studypro-backend/
+cd /path/to/studypro-backend/
 npm install --production
 ```
 
 ### Step 7: Configure Domain
 
 1. In cPanel, go to **Domains**
-2. Ensure `www.studyproglobal.com.bd` points to `/home/myxenpay/studyproglobal.com.bd/`
+2. Ensure `www.studyproglobal.com.bd` points to your frontend directory
 3. Enable HTTPS/SSL:
    - Go to **SSL/TLS Status**
    - Run AutoSSL for your domain
@@ -130,7 +130,7 @@ npm install --production
 
 ### Step 8: Set Up .htaccess for Frontend Routing
 
-Create `/home/myxenpay/studyproglobal.com.bd/.htaccess`:
+Create `.htaccess` in your frontend directory:
 
 ```apache
 # Enable rewrite engine
@@ -175,11 +175,11 @@ RewriteRule ^(.*)$ /index.html [L]
 
 ### Step 9: Upload Logo
 
-1. Upload `logo.jpg` to `/home/myxenpay/studyproglobal.com.bd/images/`
+1. Upload `logo.jpg` to your frontend's images directory
 2. Set permissions:
 
 ```bash
-chmod 644 /home/myxenpay/studyproglobal.com.bd/images/logo.jpg
+chmod 644 /path/to/studyproglobal.com.bd/images/logo.jpg
 ```
 
 ## Automatic Deployment Workflow
@@ -227,7 +227,7 @@ If automatic deployment doesn't work, you can manually pull updates:
 1. Clear browser cache (Ctrl+Shift+R)
 2. Check Git Version Control for deployment status
 3. Verify file permissions in File Manager
-4. Check error logs: `/home/myxenpay/logs/`
+4. Check error logs in your cPanel logs directory
 
 ### Issue: 500 Internal Server Error
 
@@ -253,7 +253,7 @@ If automatic deployment doesn't work, you can manually pull updates:
 ## Directory Structure After Deployment
 
 ```
-/home/myxenpay/
+/home/your_username/
 ├── studyproglobal.com.bd/          # Frontend (accessible via web)
 │   ├── index.html
 │   ├── css/

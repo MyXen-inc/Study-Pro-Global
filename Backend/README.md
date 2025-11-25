@@ -246,9 +246,7 @@ The backend is **ready for production deployment** to `www.studyproglobal.com.bd
 
 ### Automatic Deployment via cPanel
 
-The `.cpanel.yml` file is configured to automatically deploy the backend to:
-- Path: `/home/myxenpay/studypro-backend/`
-- On every push to GitHub
+The `.cpanel.yml` file is configured to automatically deploy the backend on every push to GitHub.
 
 See [PRODUCTION_SETUP.md](./PRODUCTION_SETUP.md) for complete deployment guide.
 
@@ -256,8 +254,10 @@ See [PRODUCTION_SETUP.md](./PRODUCTION_SETUP.md) for complete deployment guide.
 
 ```bash
 # On production server
-cd /home/myxenpay/studypro-backend/
+cd /path/to/studypro-backend/
 cp .env.example .env
+# Edit .env with your actual credentials
+nano .env
 npm install --production
 pm2 start server.js --name studyproglobal-api
 pm2 save

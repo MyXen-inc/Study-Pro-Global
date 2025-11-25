@@ -13,11 +13,12 @@ Use this checklist to ensure successful deployment of the Study Pro Global Backe
 - [ ] Firewall configured (ports 22, 80, 443 open)
 
 ### 2. Database Access ✓
-- [ ] Database `myxenpay_studyproglobal` exists
-- [ ] Database user `myxenpay_studyproglobal` has full privileges
+- [ ] Database created with secure credentials
+- [ ] Database user has full privileges
 - [ ] Database connection tested from server
   ```bash
-  mysql -h server10.cloudswebserver.com -u myxenpay_studyproglobal -p
+  # Use your credentials from .env
+  mysql -h $DB_HOST -u $DB_USER -p
   ```
 
 ### 3. Domain & SSL ✓
@@ -37,17 +38,17 @@ Use this checklist to ensure successful deployment of the Study Pro Global Backe
 
 ### Step 1: Clone/Pull Repository ✓
 ```bash
-cd /home/myxenpay/
+cd /home/your_username/
 # If first time:
 git clone https://github.com/MyXen-inc/Study-Pro-Global.git
 cd Study-Pro-Global
 
 # If updating:
 cd Study-Pro-Global
-git pull origin copilot/deploy-backend-api
+git pull origin main
 ```
 - [ ] Repository cloned/updated successfully
-- [ ] On correct branch (`copilot/deploy-backend-api`)
+- [ ] On correct branch
 
 ### Step 2: Backend Setup ✓
 ```bash
@@ -272,7 +273,7 @@ pm2 logs studyproglobal-api
 ### Backups ✓
 ```bash
 # Create backup script
-nano /home/myxenpay/backup_db.sh
+nano /home/your_username/backup_db.sh
 ```
 - [ ] Daily database backups scheduled
 - [ ] Backup script tested
@@ -282,7 +283,7 @@ nano /home/myxenpay/backup_db.sh
 ### Documentation ✓
 - [ ] API documentation accessible
 - [ ] Deployment guide shared with team
-- [ ] Credentials stored securely
+- [ ] Credentials stored securely (in .env, not in docs)
 - [ ] Contact information updated
 
 ## Troubleshooting
@@ -295,8 +296,8 @@ node server.js  # Run directly to see errors
 
 ### Database connection failed
 ```bash
-# Test connection
-mysql -h server10.cloudswebserver.com -u myxenpay_studyproglobal -p
+# Test connection (use credentials from .env)
+mysql -h $DB_HOST -u $DB_USER -p
 
 # Check credentials in .env
 cat .env | grep DB_
