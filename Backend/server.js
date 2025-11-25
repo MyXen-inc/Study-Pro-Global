@@ -15,7 +15,18 @@ app.use(compression());
 
 // CORS configuration
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN || 'https://www.studyproglobal.com.bd',
+  origin: [
+    // Primary frontend domain (.com)
+    'https://www.studyproglobal.com',
+    'https://studyproglobal.com',
+    // API and backend services (.com.bd)
+    'https://api.studyproglobal.com.bd',
+    'https://mobile.studyproglobal.com.bd',
+    'https://studypro-backend.studyproglobal.com.bd',
+    // Local development
+    'http://localhost:3000',
+    'http://localhost:5500'
+  ],
   credentials: true,
   optionsSuccessStatus: 200
 };
@@ -45,6 +56,7 @@ const paymentRoutes = require('./routes/payments');
 const scholarshipRoutes = require('./routes/scholarships');
 const courseRoutes = require('./routes/courses');
 const chatRoutes = require('./routes/chat');
+const blogRoutes = require('./routes/blog');
 
 // API routes
 app.use('/api/v1/auth', authRoutes);
@@ -56,14 +68,25 @@ app.use('/api/v1/payments', paymentRoutes);
 app.use('/api/v1/scholarships', scholarshipRoutes);
 app.use('/api/v1/courses', courseRoutes);
 app.use('/api/v1/chat', chatRoutes);
+app.use('/api/v1/blog', blogRoutes);
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+app.get('/api/health', async (req, res) => {
+  let dbStatus = 'unknown';
+  try {
+    const { pool } = require('./config/database');
+    await pool.query('SELECT 1');
+    dbStatus = 'connected';
+  } catch (e) {
+    dbStatus = 'disconnected';
+  }
+  
   res.json({
     success: true,
-    message: 'Study Pro Global API is running',
-    timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
+    message: 'Study Pro Global API',
+    environment: process.env.NODE_ENV || 'development',
+    database: dbStatus,
+    timestamp: new Date().toISOString()
   });
 });
 
