@@ -1,3 +1,12 @@
+// PM2 Configuration for Study Pro Global Backend
+// API runs on: api.studyproglobal.com.bd (port 3000)
+// 
+// Subdomain Structure:
+// - www.studyproglobal.com.bd          → Frontend
+// - api.studyproglobal.com.bd          → Backend API (this app)
+// - mobile.studyproglobal.com.bd       → Mobile app
+// - studypro-backend.studyproglobal.com.bd → Admin dashboard
+
 module.exports = {
   apps: [{
     name: 'studyproglobal-api',

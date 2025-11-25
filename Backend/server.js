@@ -18,6 +18,9 @@ const corsOptions = {
   origin: [
     'https://www.studyproglobal.com.bd',
     'https://studyproglobal.com.bd',
+    'https://api.studyproglobal.com.bd',
+    'https://mobile.studyproglobal.com.bd',
+    'https://studypro-backend.studyproglobal.com.bd',
     'http://localhost:3000',
     'http://localhost:5500'
   ],
