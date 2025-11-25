@@ -135,9 +135,17 @@ AWS_SECRET_ACCESS_KEY=<your_aws_secret>
 ### 3.4 Database Setup
 
 ```bash
-# Connect to MySQL database (use your credentials from .env)
-mysql -h $DB_HOST -u $DB_USER -p $DB_NAME
+# Create a secure MySQL config file with your credentials (do NOT commit this file)
+cat > ~/.my.cnf <<EOF
+[client]
+user=$DB_USER
+password=$DB_PASSWORD
+host=$DB_HOST
+EOF
+chmod 600 ~/.my.cnf
 
+# Connect to MySQL database securely using the config file
+mysql --defaults-extra-file=~/.my.cnf $DB_NAME
 # Run database migrations (create tables)
 # This should be done through your backend application
 # See Backend/README.md for schema details
