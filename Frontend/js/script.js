@@ -622,9 +622,15 @@ function showPaymentModal(planId) {
                 <p style="margin: 0 0 8px 0;"><strong>$myxn Token Payment:</strong></p>
                 <p style="margin: 0; font-size: 14px;">Send <strong>${plan.price} USDT worth of $myxn</strong> to:</p>
                 <code style="display: block; margin-top: 8px; padding: 8px; background: #fff; border-radius: 4px; word-break: break-all; font-size: 12px;">
-                    ${CONFIG.PAYMENT?.CRYPTO_WALLET || 'CHXoAEvTi3FAEZMkWDJJmUSRXxYAoeco4bDMDZQJVWen'}
+                    ${CONFIG.PAYMENT?.CRYPTO_WALLET || 'Azvjj21uXQzHbM9VHhyDfdbj14HD8Tef7ZuC1p7sEMk9'}
                 </code>
+                <p style="margin: 8px 0 0 0; font-size: 11px; color: #92400e;"><i class="fas fa-info-circle"></i> <strong>Note:</strong> Adding a note/memo is mandatory when making payment.</p>
                 <div style="margin-top: 12px;">
+                    <label style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;">Payment Note/Memo (Required):</label>
+                    <input type="text" id="paymentNoteInput" placeholder="Enter your email or user ID as note" 
+                           style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; box-sizing: border-box; margin-bottom: 8px;">
+                </div>
+                <div>
                     <label style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;">Transaction Hash:</label>
                     <input type="text" id="txHashInput" placeholder="Enter your transaction hash after payment" 
                            style="width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; box-sizing: border-box;">

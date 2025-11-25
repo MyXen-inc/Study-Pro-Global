@@ -32,8 +32,12 @@ const CONFIG = {
 
   // Payment Configuration
   PAYMENT: {
-    // $myxn Token wallet address for crypto payments
-    CRYPTO_WALLET: 'CHXoAEvTi3FAEZMkWDJJmUSRXxYAoeco4bDMDZQJVWen',
+    // $myxn Token wallet address for receiving crypto payments
+    // This is the official receiving wallet for all subscription payments
+    CRYPTO_WALLET: 'Azvjj21uXQzHbM9VHhyDfdbj14HD8Tef7ZuC1p7sEMk9',
+    
+    // Token contract address (for reference)
+    TOKEN_CONTRACT: 'CHXoAEvTi3FAEZMkWDJJmUSRXxYAoeco4bDMDZQJVWen',
     
     // Supported payment methods
     METHODS: {

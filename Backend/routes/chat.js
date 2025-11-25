@@ -204,4 +204,74 @@ router.get('/conversations', verifyToken, async (req, res) => {
   }
 });
 
+// Chatbot consultation request (no auth required for lead generation)
+router.post('/consultation-request', [
+  body('name').trim().notEmpty().withMessage('Name is required'),
+  body('email').isEmail().withMessage('Valid email is required'),
+  body('phone').trim().notEmpty().withMessage('Phone is required'),
+  body('country').trim().notEmpty().withMessage('Country is required'),
+  body('targetCountry').trim().notEmpty().withMessage('Target country is required')
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return errorResponse(res, 400, 'VALIDATION_ERROR', 'Invalid input data', {
+        errors: errors.array()
+      });
+    }
+
+    const {
+      name,
+      email,
+      phone,
+      country,
+      academicLevel,
+      targetCountry,
+      fieldOfStudy,
+      budget,
+      timeline,
+      source
+    } = req.body;
+
+    // Create consultation request in database
+    const requestId = generateUUID();
+
+    // Store in a consultation_requests table (you may need to create this)
+    // For now, we'll use the consultations table with a special type
+    await pool.query(
+      `INSERT INTO consultations 
+       (id, user_id, consultation_type, status, notes, scheduled_at) 
+       VALUES (?, NULL, 'free_chatbot', 'pending', ?, NOW())`,
+      [
+        requestId,
+        JSON.stringify({
+          name,
+          email,
+          phone,
+          country,
+          academicLevel,
+          targetCountry,
+          fieldOfStudy,
+          budget,
+          timeline,
+          source: source || 'chatbot',
+          requestedAt: new Date().toISOString()
+        })
+      ]
+    );
+
+    console.log(`New consultation request from chatbot: ${email}`);
+
+    return successResponse(res, {
+      message: 'Consultation request submitted successfully',
+      requestId,
+      estimatedResponse: '24-48 hours'
+    }, 201);
+
+  } catch (error) {
+    console.error('Consultation request error:', error);
+    return errorResponse(res, 500, 'REQUEST_FAILED', 'Failed to submit consultation request');
+  }
+});
+
 module.exports = router;
