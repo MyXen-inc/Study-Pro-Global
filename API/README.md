@@ -6,8 +6,15 @@ This folder contains the API documentation and related files for the Study Pro G
 
 ```
 Development: http://localhost:3000/api/v1
-Production: https://api.studyproglobal.com/api/v1
+Production: https://api.studyproglobal.com.bd/api/v1
 ```
+
+## Domain Structure
+
+- **Frontend**: https://www.studyproglobal.com
+- **API**: https://api.studyproglobal.com.bd
+- **Mobile**: https://mobile.studyproglobal.com.bd
+- **Admin**: https://studypro-backend.studyproglobal.com.bd
 
 ## Authentication
 

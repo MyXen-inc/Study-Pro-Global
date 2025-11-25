@@ -6,7 +6,7 @@ Study Pro Global uses a multi-subdomain architecture for better organization and
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                  studyproglobal.com.bd                      │
+│           studyproglobal.com + studyproglobal.com.bd        │
 └─────────────────────────────────────────────────────────────┘
                             │
         ┌───────────────────┼───────────────────┬────────────┐
@@ -14,6 +14,8 @@ Study Pro Global uses a multi-subdomain architecture for better organization and
         ▼                   ▼                   ▼            ▼
 ┌───────────────┐  ┌──────────────┐  ┌──────────────┐  ┌─────────────────┐
 │www.           │  │api.          │  │mobile.       │  │studypro-backend.│
+│studyproglobal │  │studyproglobal│  │studyproglobal│  │studyproglobal   │
+│.com           │  │.com.bd       │  │.com.bd       │  │.com.bd          │
 │               │  │              │  │              │  │                 │
 │Frontend       │  │Backend API   │  │Mobile App    │  │Admin Dashboard  │
 │(HTML/CSS/JS)  │  │(Node.js)     │  │(React Native)│  │(Admin Panel)    │
@@ -23,14 +25,16 @@ Study Pro Global uses a multi-subdomain architecture for better organization and
 
 ## Subdomain Structure
 
-### 1. **www.studyproglobal.com.bd** (Main Frontend)
+### 1. **www.studyproglobal.com** (Main Frontend)
 - **Purpose**: Public-facing website
-- **Location**: `/home/myxenpay/studyproglobal.com.bd/`
+- **Domain**: studyproglobal.com
+- **Location**: `/home/myxenpay/studyproglobal.com/`
 - **Technology**: HTML, CSS, JavaScript
 - **Content**: Homepage, blog, university listings, user dashboard
 
 ### 2. **api.studyproglobal.com.bd** (Backend API)
 - **Purpose**: RESTful API server
+- **Domain**: studyproglobal.com.bd
 - **Location**: `/home/myxenpay/studypro-backend/`
 - **Technology**: Node.js + Express
 - **Port**: 3000
@@ -38,26 +42,40 @@ Study Pro Global uses a multi-subdomain architecture for better organization and
 
 ### 3. **mobile.studyproglobal.com.bd** (Mobile App)
 - **Purpose**: Mobile application or mobile-optimized interface
+- **Domain**: studyproglobal.com.bd
 - **Location**: `/home/myxenpay/mobile.studyproglobal.com.bd/`
 - **Technology**: React Native or Mobile-optimized HTML
 
 ### 4. **studypro-backend.studyproglobal.com.bd** (Admin Dashboard)
 - **Purpose**: Administrative backend interface
+- **Domain**: studyproglobal.com.bd
 - **Location**: `/home/myxenpay/studypro-backend-admin/`
 - **Technology**: Admin panel for content management
 
 ## cPanel Setup Instructions
 
-### Step 1: Create Subdomains in cPanel
+### Step 1: Add Both Domains to cPanel
 
+First, ensure both domains are added to your cPanel account:
 1. Log in to cPanel
-2. Navigate to **Domains** → **Subdomains**
-3. Create the following subdomains:
+2. Navigate to **Domains** → **Domains**
+3. Add **studyproglobal.com** (primary domain for frontend)
+4. Add **studyproglobal.com.bd** (for API and backend services)
+
+### Step 2: Create Subdomains in cPanel
+
+Navigate to **Domains** → **Subdomains** and create the following:
+
+#### Frontend (Main Domain)
+- **Domain**: `www.studyproglobal.com`
+- **Document Root**: `/home/myxenpay/studyproglobal.com/`
+- Note: This is the primary public-facing website
 
 #### API Subdomain
 - **Subdomain**: `api`
 - **Domain**: `studyproglobal.com.bd`
 - **Document Root**: `/home/myxenpay/api.studyproglobal.com.bd`
+- Note: This will proxy to the Node.js backend running on port 3000
 
 #### Mobile Subdomain
 - **Subdomain**: `mobile`
@@ -125,6 +143,10 @@ const CONFIG = {
     BASE_URL: window.location.hostname === 'localhost' 
       ? 'http://localhost:3000/api/v1'
       : 'https://api.studyproglobal.com.bd/api/v1'
+  },
+  PAYMENT: {
+    // Payment configuration
+    WALLET_ADDRESS: 'Azvjj21uXQzHbM9VHhyDfdbj14HD8Tef7ZuC1p7sEMk9'
   }
 };
 ```
@@ -135,11 +157,16 @@ Update CORS in `Backend/server.js`:
 ```javascript
 const corsOptions = {
   origin: [
-    'https://www.studyproglobal.com.bd',
-    'https://studyproglobal.com.bd',
+    // Primary frontend domain (.com)
+    'https://www.studyproglobal.com',
+    'https://studyproglobal.com',
+    
+    // API and backend services (.com.bd)
     'https://api.studyproglobal.com.bd',
     'https://mobile.studyproglobal.com.bd',
     'https://studypro-backend.studyproglobal.com.bd',
+    
+    // Local development
     'http://localhost:3000',
     'http://localhost:5500'
   ],
@@ -151,8 +178,14 @@ const corsOptions = {
 
 In `Backend/.env`:
 ```env
+# API URL
 APP_URL=https://api.studyproglobal.com.bd
-CORS_ORIGIN=https://www.studyproglobal.com.bd,https://studyproglobal.com.bd,https://api.studyproglobal.com.bd,https://mobile.studyproglobal.com.bd,https://studypro-backend.studyproglobal.com.bd
+
+# CORS Origins - Frontend (.com) + Backend services (.com.bd)
+CORS_ORIGIN=https://www.studyproglobal.com,https://studyproglobal.com,https://api.studyproglobal.com.bd,https://mobile.studyproglobal.com.bd,https://studypro-backend.studyproglobal.com.bd
+
+# Frontend URL for redirects
+FRONTEND_URL=https://www.studyproglobal.com
 ```
 
 ## Testing the Setup
@@ -200,7 +233,7 @@ Expected response:
 
 ```
 /home/myxenpay/
-├── studyproglobal.com.bd/          # www subdomain (Frontend)
+├── studyproglobal.com/             # Main frontend (.com domain)
 │   ├── index.html
 │   ├── css/
 │   ├── js/
@@ -235,17 +268,30 @@ Expected response:
 ## Deployment Workflow
 
 1. **Update Code**: Push changes to repository
-2. **Deploy Frontend**: 
+2. **Deploy Frontend** (www.studyproglobal.com): 
    ```bash
-   cd /home/myxenpay/studyproglobal.com.bd
+   cd /home/myxenpay/studyproglobal.com
    git pull origin main
+   # Copy Frontend directory contents
+   cp -r Frontend/* .
    ```
-3. **Deploy Backend**:
+3. **Deploy Backend API** (api.studyproglobal.com.bd):
    ```bash
    cd /home/myxenpay/studypro-backend
+   git pull origin main
+   # Copy Backend directory contents
+   cp -r Backend/* .
    bash scripts/deploy.sh
+   pm2 restart studyproglobal-api
    ```
-4. **Verify**: Test all subdomains and API endpoints
+4. **Deploy Mobile** (mobile.studyproglobal.com.bd):
+   ```bash
+   cd /home/myxenpay/mobile.studyproglobal.com.bd
+   git pull origin main
+   # Copy Mobile directory contents
+   cp -r Mobile/* .
+   ```
+5. **Verify**: Test all subdomains and API endpoints
 
 ## Additional Resources
 

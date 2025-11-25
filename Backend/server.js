@@ -16,11 +16,14 @@ app.use(compression());
 // CORS configuration
 const corsOptions = {
   origin: [
-    'https://www.studyproglobal.com.bd',
-    'https://studyproglobal.com.bd',
+    // Primary frontend domain (.com)
+    'https://www.studyproglobal.com',
+    'https://studyproglobal.com',
+    // API and backend services (.com.bd)
     'https://api.studyproglobal.com.bd',
     'https://mobile.studyproglobal.com.bd',
     'https://studypro-backend.studyproglobal.com.bd',
+    // Local development
     'http://localhost:3000',
     'http://localhost:5500'
   ],
