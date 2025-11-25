@@ -181,10 +181,18 @@ curl -X POST https://www.studyproglobal.com.bd/api/v1/auth/register \
 ```
 Or manually (use your credentials from .env):
 ```bash
-mysql -h $DB_HOST \
-  -u $DB_USER \
-  -p$DB_PASSWORD \
-  $DB_NAME < sample_data.sql
+# Create a secure MySQL config file with your credentials:
+cat > ~/.my.cnf <<EOF
+[client]
+user=$DB_USER
+password=$DB_PASSWORD
+host=$DB_HOST
+database=$DB_NAME
+EOF
+chmod 600 ~/.my.cnf
+
+# Then import the sample data securely:
+mysql --defaults-extra-file=~/.my.cnf < sample_data.sql
 ```
 - [ ] Sample data imported successfully
 - [ ] Universities, programs, scholarships, courses available
